@@ -40,7 +40,7 @@ R).push([b,c,d])};define.amd={jQuery:!0};j.exec=function(b){return eval(b)};j(t)
 	Config by watert
 	*/
 	var __config = {
-		baseUrl:"http://localhost/demos/weblib",
+		baseUrl:"http://localhost/weblib",
 		paths:{
 			jquery:"libs/jquery.min",
 			underscore:"libs/underscore-min",

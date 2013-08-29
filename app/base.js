@@ -5,7 +5,7 @@ define(["jquery","underscore","backbone","ldata"],function($){
 
     $deparam();
     // My App
-    var App = _.extend(window.App||{},{
+    var App = _.extend(window.App||{},Backbone.Events,{
         Views:{},
         Collections:{},
         Models:{},
