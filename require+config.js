@@ -42,23 +42,30 @@ R).push([b,c,d])};define.amd={jQuery:!0};j.exec=function(b){return eval(b)};j(t)
 	var __config = {
 		baseUrl:"http://localhost/weblib",
 		paths:{
-			jquery:"libs/jquery.min",
-			underscore:"libs/underscore-min",
+			// Pre Compiler
+			less:"libs/less-1.4.2.min", 
+			coffee:"libs/coffee-script",
+			// Bootstrap
 	        bootstrap:"libs/bootstrap/js/bootstrap.min",
 	        bootstrap3:"libs/bootstrap-3.0.0/dist/js/bootstrap.min",
+			// Basic
+			jquery:"libs/jquery.min",
+			underscore:"libs/underscore-min",
 			backbone:"libs/backbone-min",
-			less:"libs/less-1.4.2.min",
-			d3:"libs/d3.v3.min",
 			ldata:"libs/jQuery.lightDataBind",
-			coffee:"libs/coffee-script.js",
 	        "jquery.ui.widget":"libs/jQuery-File-Upload-8.8.2/js/vendor/jquery.ui.widget",
 			"jquery-file-upload":"libs/jQuery-File-Upload-8.8.2/js/jquery.fileupload",
+			// Visualization
+			d3:"libs/d3.v3.min",
+			highcharts:"libs/highcharts-3.0.5",
+			
 			"store":"libs/store.js-master/store.min.js",
 			"json":"libs/JSON-js-master/json2.js"
 
 			// app:"app/base"
 		},
 		shim:{
+			"store":["json"],
 	        "jquery.ui.widget":{
 	            deps:["jquery"]
 	        },
