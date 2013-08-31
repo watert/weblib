@@ -50,6 +50,7 @@ R).push([b,c,d])};define.amd={jQuery:!0};j.exec=function(b){return eval(b)};j(t)
 			less:"libs/less-1.4.2.min",
 			d3:"libs/d3.v3.min",
 			ldata:"libs/jQuery.lightDataBind",
+			coffee:"libs/coffee-script.js",
 	        "jquery.ui.widget":"libs/jQuery-File-Upload-8.8.2/js/vendor/jquery.ui.widget",
 			"jquery-file-upload":"libs/jQuery-File-Upload-8.8.2/js/jquery.fileupload",
 			"store":"libs/store.js-master/store.min.js",
