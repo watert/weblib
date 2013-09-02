@@ -46,6 +46,8 @@ R).push([b,c,d])};define.amd={jQuery:!0};j.exec=function(b){return eval(b)};j(t)
 			less:"libs/less-1.4.2.min", 
 			"coffee-script":"libs/coffee-script",
 			// "coffeescript-amd-loader":"libs/coffeescript-amd-loader",
+			// Parsers
+			marked:"libs/marked",
 
 			// Bootstrap
 	        bootstrap:"libs/bootstrap/js/bootstrap.min",
@@ -97,6 +99,7 @@ R).push([b,c,d])};define.amd={jQuery:!0};j.exec=function(b){return eval(b)};j(t)
 		}
 	};
 	require.config(__config);
+	require._config = __config;
 	if(console&&console.log){
 		console.log("Requirejs config:",__config);
 		console.log("Usable paths:",__config.paths);}

@@ -2,17 +2,96 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<script src="libs/"></script>
 
-	<script src="http://localhost/demos/weblib/require+config.js"></script>
-	<script>
-		require(["app/base"],function(App){
-			console.log("hello, ",App);
-		});
+	<script src="./default.js"></script>
+	<style type="text/less">
+		.navbar {
+			.navbar-text {font-weight:200;font-style:italic;}
+		}
+		#catalog {
+			ul {margin:0; padding-left:20px;}
+		}
+		.markdown {
+			font-weight:300;font-size:15px;
+			.page-header {margin-top:0;}
+			ul {margin: 0.4em 0;padding-left:20px;}
+			h2,h3,h4 {margin-top:1.5em;}
+			h3,h4 {font-weight:300;}
+			pre {background:hsl(0,0%,99%)}
+		}
+		.block-row {
+			/*margin: 10px 0;*/
+			padding: 10px 0;
+			/*border-bottom: dashed 1px #CCC;*/
+		}
+	</style>
+	<script> require(["bootstrap3","less","coffee"]); </script>
+
+	<script type="text/coffeescript">
+	define "domCatalog",["jquery","marked","underscore"],($,marked)->
+		(content)->
+			lines = []
+			lines = content.find("h2,h3,h4,h5,h6").map (idx)->
+				dom = $(this)
+				lv = parseInt @tagName.substr(1)
+				hash = "hash-#{@tagName}-#{idx}"
+				@id = hash
+				indent = _(_.range(lv-2)).map( ()-> "\t" ).join("");
+				line = "#{indent}- [#{dom.text()}](\##{hash})"
+			markdown = _.toArray(lines).join("\n")
+			html = marked.parse markdown
+			$("<div>").html(html).children()
+
+	require ["app/base","marked","domCatalog","libs/jquery.pin"],(App,marked,catalog)->
+		# console.log App,marked,window.marked = marked
+		$.get "README.md",(md)->
+			html = marked.parse md
+			docDom = $("#blocks").html html
+			docDom.find("h1").addClass("page-header")
+			rowDom = $ "<div>", "class":"block-row row"
+			colDom = $ "<div>", "class":"col-md-6"
+			catalogDom = $("#catalog")
+				.html(catalog(docDom))
+			pinDom = catalogDom.parents(".panel:eq(0)").pin( minWidth: 940 )
+			$(window).on "resize",()=>
+				pinDom.width("auto").pin( minWidth:940 )
+
 	</script>
 	<title></title>
 </head>
 <body>
-	Requirejs Weblib Test Case.
+	<div class="navbar navbar-default navbar-static-top">
+		<div class="container">
+			<div class="navbar-inner">
+				<a href="./" class="navbar-brand">WebLib</a>
+				<div class="navbar-text">Enjoy Frontend Coding</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="panel panel-default">
+					<!-- <div class="panel-heading">
+						<div class="panel-title">目录</div>
+					</div> -->
+					<div id="catalog" class="panel-body">
+						
+					</div>
+				</div>
+			</div>
+			<div class="col-md-9">
+				<!-- <div class="alert alert-info">
+					文档描述
+				</div> -->
+				<div id="blocks" class="markdown">
+					
+				</div>
+			</div>
+		</div>
+
+		<hr>
+		<p class="text-center"> Copy Right 2013 </p>
+	</div>
 </body>
 </html>
