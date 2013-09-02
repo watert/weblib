@@ -4,6 +4,9 @@
 	<meta charset="UTF-8">
 
 	<script src="./default.js"></script>
+
+	<!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'> -->
+	
 	<style type="text/less">
 		.navbar {
 			.navbar-text {font-weight:200;font-style:italic;}
@@ -12,12 +15,18 @@
 			ul {margin:0; padding-left:20px;}
 		}
 		.markdown {
-			font-weight:300;font-size:15px;
+			
+			font-weight:400;font-size:15px;
 			.page-header {margin-top:0;}
+
+			&,h1,h2,h3,h4 {font-family:"Open Sans",sans-serif;}
+			blockquote {font-weight:300;}
 			ul {margin: 0.4em 0;padding-left:20px;}
 			h2,h3,h4 {margin-top:1.5em;}
+			h1 {font-weight:600;}
+			h2, {font-weight:400;}
 			h3,h4 {font-weight:300;}
-			pre {background:hsl(0,0%,99%)}
+			pre {background:hsl(0,0%,99%);padding:2px;}
 		}
 		.block-row {
 			/*margin: 10px 0;*/
@@ -25,7 +34,7 @@
 			/*border-bottom: dashed 1px #CCC;*/
 		}
 	</style>
-	<script> require(["bootstrap3","less","coffee"]); </script>
+	<script> require(["bootstrap3","less","coffee","font/Open Sans"]); </script>
 
 	<script type="text/coffeescript">
 	define "domCatalog",["jquery","marked","underscore"],($,marked)->
@@ -42,9 +51,13 @@
 			html = marked.parse markdown
 			$("<div>").html(html).children()
 
-	require ["app/base","marked","domCatalog","libs/jquery.pin"],(App,marked,catalog)->
+	require ["app/base","marked","domCatalog","libs/jquery.pin","highlight"],(App,marked,catalog,pin)->
 		# console.log App,marked,window.marked = marked
-		$.get "README.md",(md)->
+		marked.setOptions
+			highlight: (code, lang = "javascript") ->
+				console.log code,lang
+				hljs.highlightAuto(code,lang ).value
+		$.get "README.md?t=#{(new Date).getTime()}",(md)->
 			html = marked.parse md
 			docDom = $("#blocks").html html
 			docDom.find("h1").addClass("page-header")

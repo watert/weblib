@@ -39,25 +39,26 @@ R).push([b,c,d])};define.amd={jQuery:!0};j.exec=function(b){return eval(b)};j(t)
 	/*
 	Config by watert
 	*/
-	var __config = {
+	var _config = require._config = {
 		baseUrl:"http://localhost/weblib",
 		paths:{
 			// Pre Compiler
-			less:"libs/less-1.4.2.min", 
+			"less":"libs/less-1.4.2.min", 
 			"coffee-script":"libs/coffee-script",
 			// "coffeescript-amd-loader":"libs/coffeescript-amd-loader",
 			// Parsers
-			marked:"libs/marked",
+			"marked":"libs/marked",
+			"highlight":"libs/highlight.js/highlight.pack",
 
 			// Bootstrap
-	        bootstrap:"libs/bootstrap/js/bootstrap.min",
-	        bootstrap3:"libs/bootstrap-3.0.0/dist/js/bootstrap.min",
+	        "bootstrap":"libs/bootstrap/js/bootstrap.min",
+	        "bootstrap3":"libs/bootstrap-3.0.0/dist/js/bootstrap.min",
 
 			// Basic
-			jquery:"libs/jquery.min",
-			underscore:"libs/underscore-min",
-			backbone:"libs/backbone-min",
-			ldata:"libs/jQuery.lightDataBind",
+			"jquery":"libs/jquery.min",
+			"underscore":"libs/underscore-min",
+			"backbone":"libs/backbone-min",
+			"ldata":"libs/jQuery.lightDataBind",
 	        "jquery.ui.widget":"libs/jQuery-File-Upload-8.8.2/js/vendor/jquery.ui.widget",
 			"jquery-file-upload":"libs/jQuery-File-Upload-8.8.2/js/jquery.fileupload",
 			
@@ -66,18 +67,22 @@ R).push([b,c,d])};define.amd={jQuery:!0};j.exec=function(b){return eval(b)};j(t)
 			highcharts:"libs/highcharts-3.0.5",
 
 			"store":"libs/store.js-master/store.min.js",
-			"json":"libs/JSON-js-master/json2.js"
+			"json":"libs/JSON-js-master/json2"
 
 			// app:"app/base"
 		},
 		shim:{
 			// "coffee-script":["coffeescript-amd-loader"],
 			"store":["json"],
+	        "json":{
+	        	"init":function(JSON){return window.JSON;}
+	        },
+			"highlight":["highlight-css"],
 	        "jquery.ui.widget":{
-	            deps:["jquery"]
+	            "deps":["jquery"]
 	        },
 			"jquery-file-upload":{
-	            deps:[
+	            "deps":[
 	                "jquery",
 	                "jquery.ui.widget",
 	                "libs/jQuery-File-Upload-8.8.2/js/jquery.iframe-transport.js"
@@ -85,24 +90,23 @@ R).push([b,c,d])};define.amd={jQuery:!0};j.exec=function(b){return eval(b)};j(t)
 	            ]
 	        },
 			"ldata":{
-				deps:["jquery"]
+				"deps":["jquery"]
 			},
-			"bootstrap3":{deps:["bootstrap3-css","jquery"]},
-			"bootstrap":{deps:["bootstrap-css","jquery"]},
+			"bootstrap3":{"deps":["bootstrap3-css","jquery"]},
+			"bootstrap":{"deps":["bootstrap-css","jquery"]},
 			"backbone":{
-				deps:["underscore","jquery"],exports:"Backbone"
+				"deps":["underscore","jquery"],"exports":"Backbone"
 			},
 			"app/base":{
-				deps:["backbone","jquery"],
-				exports:"App"
+				"deps":["backbone","jquery"],
+				"exports":"App"
 			}
 		}
 	};
-	require.config(__config);
-	require._config = __config;
+	require.config(_config);
 	if(console&&console.log){
-		console.log("Requirejs config:",__config);
-		console.log("Usable paths:",__config.paths);}
+		console.log("Requirejs config:",_config);
+		console.log("Usable paths:",_config.paths);}
 
     function loadCss(url) {
         url = require.toUrl(url);
@@ -110,18 +114,23 @@ R).push([b,c,d])};define.amd={jQuery:!0};j.exec=function(b){return eval(b)};j(t)
         link.type = "text/css"; link.rel = "stylesheet"; link.href = url;
         document.getElementsByTagName("head")[0].appendChild(link);
     }
+    require.loadCss = loadCss;
 
     // function loadUrl(url){
 
     // }
+    function cssDefine(arr){ return function(){ for(i in arr){ loadCss(arr[i]); }; }; };
     define("coffee",["coffee-script"],function(c){ c.runScripts(); })
-    define("bootstrap3-css",function(){
-        loadCss("libs/bootstrap-3.0.0/dist/css/bootstrap.min.css");
-        // loadCss("libs/bootstrap-3.0.0/dist/css/bootstrap-theme.min.css");
-        loadCss("libs/bootstrap/css/font-awesome.min.css");
-    });
-    define("bootstrap-css",function(){
-        loadCss("libs/bootstrap/css/bootstrap.min.css");
-        loadCss("libs/bootstrap/css/font-awesome.min.css");
-    });
+	define("font-awesome",cssDefine(["libs/bootstrap/css/font-awesome.min.css"]));
+    define("bootstrap3-css",["font-awesome"],cssDefine(["libs/bootstrap-3.0.0/dist/css/bootstrap.min.css"]));
+    define("bootstrap-css",["font-awesome"],cssDefine(["libs/bootstrap/css/bootstrap.min.css"]));
+    define("highlight-css",cssDefine(["libs/highlight.js/styles/xcode.css"]));
+    
+    var _fonts = require._fonts = {
+    	"Open Sans":"http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800",
+    	"Droid Serif":"http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic",
+    	"PT Serif":"http://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic"
+    };
+    for(name in _fonts){ define("font/"+name,cssDefine([_fonts[name]])); };
+
 })();

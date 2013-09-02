@@ -9,21 +9,27 @@ WebLib Reference
 
 ## Quick Start
 
-__Step 1__: Create an accessable html. 
+__Step 1__: Create an html. 
 
-`sublime ./index.html`
+```shell
+sublime ./index.html
+```
 
 Local or hosted ? WHATEVER.
 
 __Step 2__: add script tag:
 
-`<script src="http://localhost/weblib/default.js"></script>`
+```html
+<script src="http://localhost/weblib/default.js"></script>
+```
 
 This step adds requirejs and it's config at the same time.
 
 __Step 3__: add needed precompiler or style libs: 
 
-`<script> require(["coffee","less","bootstrap3"]); </script>`
+```html
+<script> require(["coffee","less","bootstrap3"]); </script>
+```
 
 _ ENJOY CODING _
 
@@ -69,9 +75,17 @@ Includes most useful libraries already.
 
 ### Tools
 
-`jquery-file-upload`: [jQuery File Upload](http://blueimp.github.io/jQuery-File-Upload/) File Upload widget with multiple file selection, drag&amp;drop support, progress bar, validation and preview images, audio and video for jQuery.
+`jquery-file-upload`: [jQuery File Upload](http://blueimp.github.io/jQuery-File-Upload/) File Upload widget with multiple file selection, drag&drop support, progress bar, validation and preview images, audio and video for jQuery.
 
 `libs/jquery.pin`
+
+### Fonts
+
+`font/Open Sans`: [Open Sans](http://www.google.com/fonts/specimen/Open+Sans) is a humanist sans serif typeface designed by Steve Matteson, Type Director of Ascender Corp
+
+`font/Droid Serif`: The [Droid Serif](http://www.google.com/fonts/specimen/Droid+Serif) font family features a contemporary appearance and was designed for comfortable reading on screen.
+
+`font/PT Serif`: [PT Serif™](http://www.google.com/fonts/specimen/PT+Serif) is the second pan-Cyrillic font family developed for the project “Public Types of the Russian Federation.”
 
 ### Visualization
 
@@ -87,6 +101,7 @@ Includes most useful libraries already.
 
 `marked`: [marked](https://github.com/chjj/marked) A markdown parser and compiler. Built for speed.
 
+`highlight`: [Highlight.js](https://github.com/isagalaev/highlight.js) Javascript syntax highlighter
 
 ## Writing Modules
 
@@ -108,7 +123,7 @@ Just write modules with requirejs define.
 
 ### Add to app handler
 
-```
+```html
 <script>
 	define("moduleName",["app/base"],function($,App){
 		App.Views.module = Backbone.View.extend();
@@ -124,8 +139,8 @@ Just write modules with requirejs define.
 
 ### File Example
 
-```
-// moduleName.js
+```javascript
+/* moduleName.js */
 define(["jquery","backbone"],function($,Backbone){
 	return Backbone.View.extend({
 		events:{},
@@ -135,8 +150,8 @@ define(["jquery","backbone"],function($,Backbone){
 });
 ```
 
-```
-// index.js
+```javascript
+/* index.js */
 require(["jquery","./moduleName.js"],function($,module){
 	console.log("added module and use it.",$,module);
 });
