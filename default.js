@@ -50,6 +50,9 @@ R).push([b,c,d])};define.amd={jQuery:!0};j.exec=function(b){return eval(b)};j(t)
 			"marked":"libs/marked",
 			"highlight":"libs/highlight.js/highlight.pack",
 
+			// Polyfills
+	        "es5-shim":"libs/es5-shim.min",
+
 			// Bootstrap
 	        "bootstrap":"libs/bootstrap/js/bootstrap.min",
 	        "bootstrap3":"libs/bootstrap-3.0.0/dist/js/bootstrap.min",
@@ -77,6 +80,7 @@ R).push([b,c,d])};define.amd={jQuery:!0};j.exec=function(b){return eval(b)};j(t)
 	        "json":{
 	        	"init":function(JSON){return window.JSON;}
 	        },
+	        // "marked":["es5-shim"],
 			"highlight":["highlight-css"],
 	        "jquery.ui.widget":{
 	            "deps":["jquery"]

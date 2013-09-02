@@ -37,7 +37,7 @@
 	<script> require(["bootstrap3","less","coffee","font/Open Sans"]); </script>
 
 	<script type="text/coffeescript">
-	define "domCatalog",["jquery","marked","underscore"],($,marked)->
+	define "domCatalog",["jquery","marked","underscore","es5-shim"],($,marked)->
 		(content)->
 			lines = []
 			lines = content.find("h2,h3,h4,h5,h6").map (idx)->
