@@ -1,3 +1,5 @@
+<script src="http://php.waterwu.me/weblib/pack.js.php"></script>
+
 WebLib Reference
 ================
 
@@ -20,7 +22,7 @@ Local or hosted ? WHATEVER.
 __Step 2__: add script tag:
 
 ```html
-<script src="http://localhost/weblib/default.js"></script>
+<script src="http://localhost/weblib/pack.js.php"></script>
 ```
 
 This step adds requirejs and it's config at the same time.
@@ -36,7 +38,7 @@ _ ENJOY CODING _
 ### Example
 
 ```html
-<script src="http://localhost/weblib/require+config.js"></script>
+<script src="http://localhost/weblib/pack.js.php"></script>
 
 <style type="text/less">
 	

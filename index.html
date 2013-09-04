@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 
-	<script src="./default.js"></script>
+	<script src="./pack.js.php"></script>
 
 	<!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'> -->
 	
@@ -58,7 +58,9 @@
 				console.log code,lang
 				hljs.highlightAuto(code,lang ).value
 		$.get "README.md?t=#{(new Date).getTime()}",(md)->
-			html = marked.parse md
+			baseUrl = window.location.protocol+"//"+window.location.host+"/"
+			md = md.replace /http:\/\/localhost\//g,baseUrl
+			html = marked.parse md 
 			docDom = $("#blocks").html html
 			docDom.find("h1").addClass("page-header")
 			rowDom = $ "<div>", "class":"block-row row"
