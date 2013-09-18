@@ -1,4 +1,6 @@
 <script src="http://php.waterwu.me/weblib/pack.js.php"></script>
+<script> require(["font/Open Sans","bootstrap3"]);</script>
+<style> body,h1,h2,h3,h4,h5 {font-family:"Open Sans","微软雅黑";} body {margin:0 auto;} </style>
 
 WebLib Reference
 ================
@@ -80,6 +82,8 @@ Includes most useful libraries already.
 `jquery-file-upload`: [jQuery File Upload](http://blueimp.github.io/jQuery-File-Upload/) File Upload widget with multiple file selection, drag&drop support, progress bar, validation and preview images, audio and video for jQuery.
 
 `libs/jquery.pin`
+
+`bootstrap-wysiwyg`: [bootstrap-wysiwyg](libs/bootstrap-wysiwyg/), tiny wysiwyg rich text editor for Bootstrap
 
 ### Fonts
 
