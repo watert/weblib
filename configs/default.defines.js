@@ -15,6 +15,7 @@ require.loadCss = loadCss;
 
 // }
 function cssDefine(arr){ return function(){ for(i in arr){ loadCss(arr[i]); }; }; };
+require.cssDefine = cssDefine;
 define("coffee",["coffee-script"],function(c){ c.runScripts(); })
 define("font-awesome",cssDefine(["libs/bootstrap/css/font-awesome.min.css"]));
 define("bootstrap3-css",["font-awesome"],cssDefine(["libs/bootstrap-3.0.0/dist/css/bootstrap.min.css"]));

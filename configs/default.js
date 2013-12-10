@@ -30,16 +30,24 @@
         "highcharts":"libs/highcharts-3.0.5",
 
         // Tools
-        "store":"libs/store.js-master/store.min.js",
+        "store":"libs/store.js-master/store.min",
         "json":"libs/JSON-js-master/json2",
-        "jquery.hotkeys":"libs/bootstrap-wysiwyg/external/jquery.hotkeys.js",
-        "bootstrap-wysiwyg":"libs/bootstrap-wysiwyg/bootstrap-wysiwyg.js",
-        "backbone-forms":"libs/backbone-forms/distribution.amd/backbone-forms.min.js",
-        "backbone-forms-bootstrap":"libs/backbone-forms/distribution.amd/templates/bootstrap.js",
-
-        // app:"app/base"
+        "jquery.hotkeys":"libs/bootstrap-wysiwyg/external/jquery.hotkeys",
+        "bootstrap-wysiwyg":"libs/bootstrap-wysiwyg/bootstrap-wysiwyg",
+        "backbone-forms":"libs/backbone-forms/distribution/backbone-forms",
+        "backbone-forms-bootstrap":"libs/backbone-forms/distribution/templates/bootstrap"
     },
     "shim":{
+        "backbone-forms":{
+            "deps":["underscore","backbone"],
+            "init":function(){ 
+                console.log("init backboneform",cssDefine,require);
+                require(["backbone-forms-bootstrap"]);
+                cssDefine(["libs/backbone-forms/distribution/templates/bootstrap.css"])();
+                return Backbone.Form; 
+            }
+        },
+        "backbone-forms-bootstrap":["backbone"],
         // "coffee-script":["coffeescript-amd-loader"],
         "bootstrap-wysiwyg":["jquery-hotkeys"],
         "store":["json"],
@@ -70,6 +78,9 @@
         "app/base":{
             "deps":["backbone","jquery"],
             "exports":"App"
+        },
+        "underscore":{
+            "exports":"_"
         }
     }
 };
