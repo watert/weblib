@@ -1,7 +1,3 @@
-<script src="http://php.waterwu.me/weblib/pack.js.php"></script>
-<script> require(["font/Open Sans","bootstrap3"]);</script>
-<style> body,h1,h2,h3,h4,h5 {font-family:"Open Sans","微软雅黑";} body {margin:0 auto;} </style>
-
 WebLib Reference
 ================
 
