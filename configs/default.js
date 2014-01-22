@@ -34,6 +34,9 @@
         "json":"libs/JSON-js-master/json2",
         "jquery.hotkeys":"libs/bootstrap-wysiwyg/external/jquery.hotkeys",
         "bootstrap-wysiwyg":"libs/bootstrap-wysiwyg/bootstrap-wysiwyg",
+        "backbone.babysitter":"libs/backbone.babysitter",
+        "backbone.wreqr":"libs/backbone.wreqr",
+        "backbone.marionette":"libs/backbone.marionette.min",
         "backbone-forms":"libs/backbone-forms/distribution/backbone-forms",
         "backbone-forms-bootstrap3":"libs/backbone-forms/distribution/templates/bootstrap3",
         "codemirror":"libs/codemirror-3.20/lib/codemirror"
