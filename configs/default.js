@@ -35,7 +35,7 @@
         "jquery.hotkeys":"libs/bootstrap-wysiwyg/external/jquery.hotkeys",
         "bootstrap-wysiwyg":"libs/bootstrap-wysiwyg/bootstrap-wysiwyg",
         "backbone-forms":"libs/backbone-forms/distribution/backbone-forms",
-        "backbone-forms-bootstrap":"libs/backbone-forms/distribution/templates/bootstrap",
+        "backbone-forms-bootstrap3":"libs/backbone-forms/distribution/templates/bootstrap3",
         "codemirror":"libs/codemirror-3.20/lib/codemirror"
     },
     "shim":{
@@ -45,16 +45,15 @@
                 return CodeMirror;
             }
         },
-        "backbone-forms":{
-            "deps":["underscore","backbone"],
-            "init":function(){ 
-                console.log("init backboneform",cssDefine,require);
-                require(["backbone-forms-bootstrap"]);
-                cssDefine(["libs/backbone-forms/distribution/templates/bootstrap.css"])();
-                return Backbone.Form; 
+        "backbone-forms-bootstrap3":{
+            "deps":["backbone-forms"],
+            init:function(){
+                cssDefine(["libs/backbone-forms/distribution/templates/bootstrap3.css"])();
             }
         },
-        "backbone-forms-bootstrap":["backbone"],
+        "backbone-forms":{
+            "deps":["underscore","backbone"]
+        },
         // "coffee-script":["coffeescript-amd-loader"],
         "bootstrap-wysiwyg":["jquery-hotkeys"],
         "store":["json"],
